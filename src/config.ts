@@ -13,12 +13,12 @@ export interface NavLink {
 }
 
 export const NAV_LINKS: NavLink[] = [
-  {
-    title: "index.html",
-    id: "home",
-    url: "/",
-    tooltip: "Home",
-  },
+  // {
+  //   title: "index.html",
+  //   id: "home",
+  //   url: "/",
+  //   tooltip: "Home",
+  // },
 ];
 
 export type SocialPlatform =  "github" | "linkedin";
