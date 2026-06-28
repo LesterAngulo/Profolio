@@ -1,0 +1,82 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+import "../styles/tooltip.css";
+import { NAV_LINKS } from "../config";
+
+const { navbarActiveItemID } = Astro.props;
+const activeClasses = ["text-accent", "font-semibold"];
+---
+
+<header id="main-header" class="px-2 md:px-6 py-4 relative z-50">
+  <div class="mx-auto">
+    <div
+      class="bg-white/70 dark:bg-black/30 backdrop-blur-lg border border-gray-300 dark:border-gray-600 rounded-lg text-sm transition-all duration-300 hover:shadow-sm dark:hover:shadow-md dark:hover:shadow-black/20"
+    >
+      <nav
+        id="navigation-menu"
+        aria-label="Main menu"
+        class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-4 px-4 py-3"
+      >
+        <div class="flex items-center justify-between sm:justify-start gap-3">
+          <div class="flex items-center gap-3">
+            <div
+              class="flex gap-2 shrink-0"
+              role="img"
+              aria-label="Window controls"
+            >
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <a
+              href="/"
+              target="_self"
+              class="font-bold text-primary hover:text-accent transition-colors duration-200"
+            >
+              📝 QuickNotes
+            </a>
+          </div>
+          <ThemeToggle class="sm:hidden" />
+        </div>
+        <div
+          class="flex flex-wrap items-center gap-3 sm:gap-4 text-xs overflow-visible"
+        >
+          {
+            NAV_LINKS.map((link) => {
+              return (
+                <a
+                  href={link.redirect ? link.redirect : link.url}
+                  target={link.redirect ? "_blank" : "_self"}
+                  id={link.id}
+                  class:list={[
+                    "text-secondary hover:text-accent transition-all duration-200",
+                    link.tooltip && "tooltip",
+                  ]}
+                  data-tooltip={link.tooltip}
+                >
+                  {link.title}
+                </a>
+              );
+            })
+          }
+          <ThemeToggle class="hidden sm:block" />
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script
+  define:vars={{
+    navbarActiveItemID,
+    activeClasses,
+  }}
+>
+  const activeItemElement = document.getElementById(navbarActiveItemID);
+
+  if (activeItemElement) {
+    activeClasses.forEach((activeClass) => {
+      activeItemElement.classList.add(activeClass);
+    });
+  }
+</script>

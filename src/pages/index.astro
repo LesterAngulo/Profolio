@@ -1,0 +1,153 @@
+---
+import SocialMediaIcons from "../components/SocialMediaIcons.astro";
+import ProjectItem from "../components/ProjectItem.astro";
+import Card from "../components/ui/Card.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TerminalHeader from "../components/ui/TerminalHeader.astro";
+import InfoRow from "../components/ui/InfoRow.astro";
+import ExternalLink from "../components/ui/ExternalLink.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import Divider from "../components/ui/Divider.astro";
+
+
+const techStack: Record<string, string> = {
+  Js: "JavaScript",
+  Ts: "TypeScript",
+  "Node.js": "Node",
+  Astro: "This site is built on astro",
+  Sql: "SQL",
+  "claude-code": "Best tool ever",
+  React: "react",
+  Java: "java",
+};
+
+const projects: Array<{
+  title: string;
+  description: string;
+  link: string;
+  icon: string;
+}> = [
+  {
+    title: "devh",
+    description: "a ecommerce for custom keyboards",
+    link: "https://devh-stage.web.app/",
+    icon: "💻",
+  },
+  {
+    title: "Planoria",
+    description: "a AI-powered website for generating teacher lesson plans.",
+    icon: "💻",
+    link: "",
+  },
+];
+---
+
+<BaseLayout navbarActiveItemID="home">
+
+  <main>
+    <section id="about" aria-labelledby="about-heading">
+      <Card role="region">
+        <TerminalHeader title="New note - About" />
+
+        <!-- Content -->
+        <div class="text-xs">
+          <div class="space-y-4 sm:space-y-2">
+            <div class="flex flex-col gap-1 mb-4">
+              <h1
+                class="text-2xl sm:text-3xl font-semibold leading-tight tracking-tight"
+              >
+                ⛩️ ¡Hi! i am <span class="text-primary font-bold"
+                  >Lester Angulo</span
+                >
+              </h1>
+              <p class="text-muted text-xs">Front End Developer</p>
+            </div>
+
+            <!-- Personal paragraph -->
+            <div
+              class="bg-accent/10 dark:bg-accent/10 border border-accent/20 dark:border-accent/20 rounded-lg p-3 mb-4"
+            >
+              <p class="text-primary leading-relaxed">
+                Welcome to my portfolio, where you can find my latest projects, my information, and much more.
+              </p>
+            </div>
+
+            <Divider class="mb-2" />
+
+            <InfoRow label="location">Culiacán, Sinaloa, México</InfoRow>
+
+            <InfoRow label="main hobby">Play Videogames</InfoRow>
+
+            <InfoRow label="current project">
+              <ExternalLink
+                href="https://google.com"
+                label="Visit Google, an evil company"
+              >
+                cooking...
+              </ExternalLink>
+            </InfoRow>
+
+            <InfoRow label="main interests">
+              coding, claude, startups, aws, gcp
+            </InfoRow>
+
+            <InfoRow label="contact">
+              <a
+                class="text-accent hover:underline focus:outline-none"
+                href="mailto:licerio.dev@gmail.com"
+                aria-label="Send e
+    mail to site author"
+              >
+                licerio.dev@gmail.com
+              </a>
+            </InfoRow>
+
+            <InfoRow label="social">
+              <SocialMediaIcons />
+            </InfoRow>
+
+            <InfoRow label="tech stack">
+              <div
+                class="flex flex-wrap gap-2"
+                role="list"
+                aria-label="Tech stack"
+              >
+                {
+                  Object.keys(techStack).map((lang) => (
+                    <span
+                      class="rounded-full bg-gray-200/60 dark:bg-gray-500/15 px-2 py-0.5 text-secondary hover:text-accent hover:bg-accent/10 transition-colors"
+                      title={techStack[lang]}
+                      role="listitem"
+                    >
+                      {lang}
+                    </span>
+                  ))
+                }
+              </div>
+            </InfoRow>
+          </div>
+        </div>
+      </Card>
+    </section>
+
+    <section id="projects" class="mt-2">
+      <Card class="text-secondary" role="region" aria-label="Project showcase">
+        <TerminalHeader title="New note - Projects! " />
+        <SectionHeading>My recent Projects</SectionHeading>
+        <div class="space-y-2" role="list">
+          {
+            projects.map((project, index) => (
+              <ProjectItem
+                title={project.title}
+                description={project.description}
+                link={project.link}
+                icon={project.icon}
+                index={index}
+              />
+            ))
+          }
+        </div>
+      </Card>
+    </section>
+  </main>
+</BaseLayout>
