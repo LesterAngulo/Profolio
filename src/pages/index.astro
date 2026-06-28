@@ -3,7 +3,7 @@ import SocialMediaIcons from "../components/SocialMediaIcons.astro";
 import ProjectItem from "../components/ProjectItem.astro";
 import Card from "../components/ui/Card.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import TerminalHeader from "../components/ui/TerminalHeader.astro";
+import QuickNote from "../components/ui/QuickNoteHeader.astro";
 import InfoRow from "../components/ui/InfoRow.astro";
 import ExternalLink from "../components/ui/ExternalLink.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
@@ -47,7 +47,7 @@ const projects: Array<{
   <main>
     <section id="about" aria-labelledby="about-heading">
       <Card role="region">
-        <TerminalHeader title="New note - About" />
+        <QuickNote title="New note - About" />
 
         <!-- Content -->
         <div class="text-xs">
@@ -132,7 +132,7 @@ const projects: Array<{
 
     <section id="projects" class="mt-2">
       <Card class="text-secondary" role="region" aria-label="Project showcase">
-        <TerminalHeader title="New note - Projects! " />
+        <QuickNote title="New note - Projects! " />
         <SectionHeading>My recent Projects</SectionHeading>
         <div class="space-y-2" role="list">
           {
